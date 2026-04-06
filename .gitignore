@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.env
+outputs/
+data/customer_risk_dataset.csv
+.DS_Store
