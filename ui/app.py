@@ -67,7 +67,7 @@ with st.sidebar:
     st.divider()
 
     if "GROQ_API_KEY" in st.secrets:
-    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+        os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
     if st.session_state.pipeline_state:
         ps = st.session_state.pipeline_state
