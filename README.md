@@ -193,6 +193,6 @@ Every agent action is timestamped in the state. This is not just a feature — i
 
 ## Author
 
-Built by Nitish | Senior Manager, Complaints Analytics & Control Management
+Built by Nitish Kumar|
 
 *Portfolio project demonstrating applied AI in data risk management.*
