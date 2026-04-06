@@ -154,16 +154,16 @@ with tab1:
         with generate_col:
             if st.button("⚡ Generate & Run Pipeline", type="primary", use_container_width=True):
                 with st.spinner("Generating synthetic dataset..."):
-    import sys
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    from data.generate_synthetic_data import generate_dataset
-    import tempfile
-    df = generate_dataset()
-    tmp = tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False)
-    df.to_csv(tmp.name, index=False)
-    data_path = tmp.name
+                    import sys
+                    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                    from data.generate_synthetic_data import generate_dataset
+                    import tempfile
+                    df = generate_dataset()
+                    tmp = tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False)
+                    df.to_csv(tmp.name, index=False)
+                    data_path = tmp.name
 
-initial_state = build_initial_state(dataset_name, dataset_description, data_path)
+                initial_state = build_initial_state(dataset_name, dataset_description, data_path)
 
                 with st.spinner("Running Profiler..."):
                     from agents.agent1_profiler import run_profiler
