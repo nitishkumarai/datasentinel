@@ -5,3 +5,4 @@ __pycache__/
 outputs/
 data/customer_risk_dataset.csv
 .DS_Store
+.streamlit/secrets.toml

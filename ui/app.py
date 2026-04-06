@@ -66,6 +66,9 @@ with st.sidebar:
     st.markdown("*AI-Powered Data Risk Intelligence*")
     st.divider()
 
+    if "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+
     if st.session_state.pipeline_state:
         ps = st.session_state.pipeline_state
         st.markdown("### Pipeline Status")
@@ -211,15 +214,15 @@ with tab2:
         # ── KPI row ──────────────────────────────────────────────────────────
         kpi1, kpi2, kpi3, kpi4, kpi5 = st.columns(5)
 
-        findings = ps.get("risk_findings", [])
-        profile = ps.get("profile_summary", {})
+        findings = ps.get("risk_findings", []) or []
+        profile = ps.get("profile_summary", {}) or {}
         severity_counts = {}
         for f in findings:
             severity_counts[f["severity"]] = severity_counts.get(f["severity"], 0) + 1
 
         with kpi1:
             st.metric("Risk Score", f"{ps.get('overall_risk_score', '—')}/100",
-                      delta=ps.get("overall_risk_tier", ""))
+                    delta=ps.get("overall_risk_tier", ""))
         with kpi2:
             st.metric("Total Findings", len(findings))
         with kpi3:
@@ -227,7 +230,7 @@ with tab2:
         with kpi4:
             st.metric("🟠 High", severity_counts.get("HIGH", 0))
         with kpi5:
-            st.metric("Dataset Rows", profile.get("n_rows", "—"))
+            st.metric("Dataset Rows", profile.get("n_rows", "—") if profile else "—")
 
         st.divider()
 
